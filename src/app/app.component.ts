@@ -32,33 +32,33 @@ export class AppComponent {
 
 
 
-  onCalculateInvestmentResults(data: InvestmentInput) {
-    const { initialInvestment, duration, expectedReturn, annualInvestment } = data;
-    const annualData = [];
-    let investmentValue = initialInvestment;
+  // onCalculateInvestmentResults(data: InvestmentInput) {
+  //   const { initialInvestment, duration, expectedReturn, annualInvestment } = data;
+  //   const annualData = [];
+  //   let investmentValue = initialInvestment;
 
-    for (let i = 0; i < duration; i++) {
-      const year = i + 1;
-      const interestEarnedInYear = investmentValue * (expectedReturn / 100);
-      investmentValue += interestEarnedInYear + annualInvestment;
-      const totalInterest =
-        investmentValue - annualInvestment * year - initialInvestment;
-      annualData.push({
-        year: year,
-        interest: interestEarnedInYear,
-        valueEndOfYear: investmentValue,
-        annualInvestment: annualInvestment,
-        totalInterest: totalInterest,
-        totalAmountInvested: initialInvestment + annualInvestment * year,
-      });
-    }
+  //   for (let i = 0; i < duration; i++) {
+  //     const year = i + 1;
+  //     const interestEarnedInYear = investmentValue * (expectedReturn / 100);
+  //     investmentValue += interestEarnedInYear + annualInvestment;
+  //     const totalInterest =
+  //       investmentValue - annualInvestment * year - initialInvestment;
+  //     annualData.push({
+  //       year: year,
+  //       interest: interestEarnedInYear,
+  //       valueEndOfYear: investmentValue,
+  //       annualInvestment: annualInvestment,
+  //       totalInterest: totalInterest,
+  //       totalAmountInvested: initialInvestment + annualInvestment * year,
+  //     });
+  //   }
 
-    console.log("annualData", annualData);
+  //   console.log("annualData", annualData);
 
-    // this.resultsData = annualData // old way
+  //   // this.resultsData = annualData // old way
 
-    this.resultsData.set(annualData)
+  //   this.resultsData.set(annualData)
 
-    return annualData;
-  }
+  //   return annualData;
+  // }
 }

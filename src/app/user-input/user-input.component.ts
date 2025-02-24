@@ -1,6 +1,7 @@
 import { Component, EventEmitter, output, Output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { InvestmentInput } from '../investment-input.model';
+import { InvestmentService } from '../investment.service';
 
 @Component({
   selector: 'app-user-input',
@@ -19,13 +20,25 @@ export class UserInputComponent {
 
   calculate = output<InvestmentInput>()
 
+  // add Service
+
+  constructor(private investmentService: InvestmentService) { }
+
   onSubmit() {
-    this.calculate.emit({
-      initialInvestment: parseInt(this.enteredInitialInvestment()),
-      duration: parseInt(this.enteredDuration()),
-      expectedReturn: parseInt(this.enteredExpectedReturn()),
-      annualInvestment: parseInt(this.enteredAnnualInitialInvestment()),
-    });
+    this.investmentService.calculateInvestmentResults(
+      {
+        initialInvestment: parseInt(this.enteredInitialInvestment()),
+        duration: parseInt(this.enteredDuration()),
+        expectedReturn: parseInt(this.enteredExpectedReturn()),
+        annualInvestment: parseInt(this.enteredAnnualInitialInvestment()),
+      }
+    )
+    // this.calculate.emit({
+    //   initialInvestment: parseInt(this.enteredInitialInvestment()),
+    //   duration: parseInt(this.enteredDuration()),
+    //   expectedReturn: parseInt(this.enteredExpectedReturn()),
+    //   annualInvestment: parseInt(this.enteredAnnualInitialInvestment()),
+    // });
 
     // reset the input fields
     this.enteredInitialInvestment.set('0')
